@@ -1,0 +1,18 @@
+{
+  "npmScope": "angular-nx-example",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "angular-nx-example-e2e": {
+      "tags": []
+    },
+    "angular-nx-example": {
+      "tags": []
+    }
+  }
+}

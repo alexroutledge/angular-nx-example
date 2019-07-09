@@ -1,0 +1,141 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "angular-nx-example": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/workspace:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/angular-nx-example",
+      "sourceRoot": "apps/angular-nx-example/src",
+      "prefix": "angular-nx-example",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/angular-nx-example",
+            "index": "apps/angular-nx-example/src/index.html",
+            "main": "apps/angular-nx-example/src/main.ts",
+            "polyfills": "apps/angular-nx-example/src/polyfills.ts",
+            "tsConfig": "apps/angular-nx-example/tsconfig.app.json",
+            "assets": [
+              "apps/angular-nx-example/src/favicon.ico",
+              "apps/angular-nx-example/src/assets"
+            ],
+            "styles": ["apps/angular-nx-example/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/angular-nx-example/src/environments/environment.ts",
+                  "with": "apps/angular-nx-example/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "angular-nx-example:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "angular-nx-example:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "angular-nx-example:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/angular-nx-example/tsconfig.app.json",
+              "apps/angular-nx-example/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/angular-nx-example/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/angular-nx-example/jest.config.js",
+            "tsConfig": "apps/angular-nx-example/tsconfig.spec.json",
+            "setupFile": "apps/angular-nx-example/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "angular-nx-example-e2e": {
+      "root": "apps/angular-nx-example-e2e",
+      "sourceRoot": "apps/angular-nx-example-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/angular-nx-example-e2e/cypress.json",
+            "tsConfig": "apps/angular-nx-example-e2e/tsconfig.e2e.json",
+            "devServerTarget": "angular-nx-example:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-nx-example:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/angular-nx-example-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**", "!apps/angular-nx-example-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "angular-nx-example"
+}
