@@ -13,6 +13,21 @@
     },
     "angular-nx-example": {
       "tags": []
+    },
+    "todos-e2e": {
+      "tags": []
+    },
+    "todos": {
+      "tags": []
+    },
+    "api": {
+      "tags": []
+    },
+    "data": {
+      "tags": []
+    },
+    "ui": {
+      "tags": []
     }
   }
 }
